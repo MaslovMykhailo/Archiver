@@ -1,0 +1,8 @@
+#ifndef ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H
+#define ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H
+
+
+void swap(Rating* , int, int);
+int get_top(Rating*);
+
+#endif //ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H

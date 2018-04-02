@@ -8,6 +8,7 @@ struct Rating {
     char **surnames;
     int **subjects;
     int *isContract;
+    float *averageRating;
     ~Rating();
 };
 

@@ -1,5 +1,7 @@
 #include "rating.h"
+#include "write_file.h"
 #include "read_file.h"
+#include "get_top.h"
 #include <iostream>
 
 using namespace std;
@@ -7,16 +9,17 @@ using namespace std;
 int main() {
     Rating* Current = read_file(const_cast<char *>("students.csv"));
 
-    for (int i = 0 ; i < Current->size ; i++) {
-        cout << Current->surnames[i] << ' '
-             << Current->subjects[i][0] << ' '
-             << Current->subjects[i][1] << ' '
-             << Current->subjects[i][2] << ' '
-             << Current->subjects[i][3] << ' '
-             << Current->subjects[i][4] << ' '
-             << Current->isContract[i]
-             << endl;
+    int num = get_top(Current);
+
+    for (int i = 0 ; i < num ; i++) {
+        cout << Current->surnames[i] << " - "
+             << Current->averageRating[i] << endl;
     }
+
+    cout << endl << "Мінімальний бал для стипендії: "
+         << Current -> averageRating[num - 1] << endl;
+
+    write_file(const_cast<char *>("rating.csv"), Current, num);
 
     delete Current;
 
