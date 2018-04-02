@@ -19,7 +19,7 @@ int main() {
     cout << endl << "Мінімальний бал для стипендії: "
          << Current -> averageRating[num - 1] << endl;
 
-    write_file(const_cast<char *>("rating.csv"), Current, num);
+    write_file((const_cast<char *>("rating.csv")), Current, num);
 
     delete Current;
 

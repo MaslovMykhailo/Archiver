@@ -1,5 +1,5 @@
-#ifndef ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H
-#define ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H
+#ifndef ASSIGNMENT_3_TEXT_FILES_PROCESSING_WRITE_FILE_H
+#define ASSIGNMENT_3_TEXT_FILES_PROCESSING_WRITE_FILE_H
 
 
 #include "rating.h"
@@ -7,6 +7,6 @@
 #include "stdlib.h"
 #include "string.h"
 
-void write_file(char , Rating* , int);
+void write_file(char* , Rating* , int);
 
-#endif //ASSIGNMENT_3_TEXT_FILES_PROCESSING_READ_FILE_H
+#endif //ASSIGNMENT_3_TEXT_FILES_PROCESSING_WRITE_FILE_H

@@ -9,7 +9,7 @@ Rating::Rating(int size, int maxStrSize) {
         this->subjects[i] = new int [5];
     }
     this->isContract = new int [this->size];
-    this -> averageRating = new float [this -> size];
+    this -> averageRating = new float [this->size];
 }
 
 Rating::~Rating() {
@@ -18,4 +18,5 @@ Rating::~Rating() {
         delete []this->subjects[i];
     }
     delete []this->isContract;
+    delete []this->averageRating;
 }
