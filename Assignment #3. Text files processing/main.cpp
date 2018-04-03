@@ -2,24 +2,21 @@
 #include "write_file.h"
 #include "read_file.h"
 #include "get_top.h"
-#include <iostream>
+#include "print_rating.h"
 
-using namespace std;
+char* inputFileName = const_cast<char *>("students.csv");
+char* outputFileName = const_cast<char *>("rating.csv");
+
+int countOfBestStudents;
 
 int main() {
-    Rating* Current = read_file(const_cast<char *>("students.csv"));
+    Rating* Current = read_file(inputFileName);
 
-    int num = get_top_of_students(Current);
+    countOfBestStudents = get_top_of_students(Current);
 
-    for (int i = 0 ; i < num ; i++) {
-        cout << Current->surnames[i] << " - "
-             << Current->averageRating[i] << endl;
-    }
+    print_rating(Current, countOfBestStudents);
 
-    cout << endl << "Мінімальний бал для стипендії: "
-         << Current -> averageRating[num - 1] << endl;
-
-    write_file((const_cast<char *>("rating.csv")), Current, num);
+    write_file(outputFileName, Current, countOfBestStudents);
 
     delete Current;
 
