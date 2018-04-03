@@ -1,8 +1,9 @@
 #include "get_top.h"
+#include "rating.h"
 #include <iostream>
 
 void swap(Rating* Rat, int i, int j){
-  int swap;
+  int swap_i;
   char* swap_s;
   float swap_f;
 
@@ -11,21 +12,22 @@ void swap(Rating* Rat, int i, int j){
   Rat -> surnames[j] = swap_s;
 
   for (int k = 0; k < 5; k++){
-    swap = Rat -> subjects[i][k];
+    swap_i = Rat -> subjects[i][k];
     Rat -> subjects[i][k] = Rat -> subjects[j][k];
-    Rat -> subjects[j][k] = swap;
+    Rat -> subjects[j][k] = swap_i;
   }
 
-  swap = Rat -> isContract[i];
+  swap_i = Rat -> isContract[i];
   Rat -> isContract[i] = Rat -> isContract[j];
-  Rat -> isContract[j] = swap;
+  Rat -> isContract[j] = swap_i;
 
   swap_f = Rat -> averageRating[i];
   Rat -> averageRating[i] = Rat -> averageRating[j];
   Rat -> averageRating[j] = swap_f;
+  return;
 }
 
-int get_top(Rating* CurRating){
+int get_top_of_students(Rating* CurRating){
   int num = 0;
   for (int i = 0; i < CurRating -> size; i++){
     int sum = 0;

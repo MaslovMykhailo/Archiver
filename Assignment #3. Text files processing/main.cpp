@@ -9,7 +9,7 @@ using namespace std;
 int main() {
     Rating* Current = read_file(const_cast<char *>("students.csv"));
 
-    int num = get_top(Current);
+    int num = get_top_of_students(Current);
 
     for (int i = 0 ; i < num ; i++) {
         cout << Current->surnames[i] << " - "
