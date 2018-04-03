@@ -15,5 +15,10 @@ void write_file(char *fileName, Rating* CurRating, int num){
     result[strlen(result)] = '\n';
     fputs(result, pFile);
   }
+  char last[] = "\nМінімальний бал для стпендії: ";
+  sprintf(buffer, "%.3f", CurRating -> averageRating[num - 1]);
+  strcat(last, buffer);
+  last[strlen(last)] = '\n';
+  fputs(last, pFile);
   fclose(pFile);
 }
