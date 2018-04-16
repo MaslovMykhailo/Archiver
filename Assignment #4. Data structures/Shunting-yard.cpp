@@ -22,22 +22,24 @@ Queue* shunting_yard(char* expr){
   int i = 0;
   bool is = false;
   while (i < strlen(str)){
+
     if ((int)str[i] >= 48 && (int)str[i] <= 57){
       num[k] = str[i];
-      k++;
-      is = true;
-    } else {
+      k++; is = true;
+    }
+
+    else {
       if (is) {
         char *res = new char;
         strcpy(res, num);
         que -> enqueue(res);
-        for (int j = 0; j < strlen(num); j++){
-          num[j] = ' ';
-        }
-        k = 0;
-        is = false;
+        delete num;
+        num = new char;
+        k = 0; is = false;
       }
+
       if (str[i] == '(') stack -> push('(');
+
       if (str[i] == ')'){
         while (!stack -> isEmpty()){
           char *swap = new char;
@@ -46,7 +48,8 @@ Queue* shunting_yard(char* expr){
           que -> enqueue(swap);
         }
       }
-      else if (str[i] == '-' || str[i] == '+'){
+
+      else if (str[i] == '-' || str[i] == '+' || str[i] == '*' || str[i] == '/'){
         while(!stack -> isEmpty()){
           char *swap = new char;
           swap[0] = stack -> pop();
@@ -58,21 +61,9 @@ Queue* shunting_yard(char* expr){
         }
         stack -> push(str[i]);
       }
-      else if (str[i] == '*' || str[i] == '/'){
-        while(!stack -> isEmpty()){
-          char *swap = new char;
-          swap[0] = stack -> pop();
-          if (swap[0] == '+' || swap[0] == '-' || swap[0] == '('){
-            stack -> push(swap[0]);
-            break;
-          }
-          que -> enqueue(swap);
-        }
-        stack -> push(str[i]);
-      }
-      else if (str[i] == '^'){
-        stack -> push(str[i]);
-      }
+
+      else if (str[i] == '^') stack -> push(str[i]);
+
     }
     i++;
   }
@@ -90,7 +81,7 @@ Queue* shunting_yard(char* expr){
 }
 
 // int main(int argc, char* argv[]){
-//   char expr[] = "(3 + 4) * (5 ^ 6)";
+//   char expr[] = "((4 + 3^3 +5)/2)^2";
 //   Queue *q = shunting_yard(expr);
 //   q -> show();
 // }
