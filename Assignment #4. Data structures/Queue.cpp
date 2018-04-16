@@ -3,11 +3,14 @@
 
 Queue::Queue(int length) {
     size = length;
-    queue = new char [size];
+    queue = new char * [size];
+    for (int i = 0 ; i < size ; i++) {
+        queue[i] = new char;
+    }
     head = tail = 0;
 }
 
-void Queue::enqueue(char element) {
+void Queue::enqueue(char* element) {
     queue[tail] = element;
     if (tail == size-1) {
         tail = 0;
@@ -16,8 +19,8 @@ void Queue::enqueue(char element) {
     }
 }
 
-char Queue::dequeue() {
-    char element = queue[head];
+char* Queue::dequeue() {
+    char* element = queue[head];
     if (head == size-1) {
         head = 0;
     } else {
@@ -44,7 +47,9 @@ void Queue::show() {
 }
 
 Queue::~Queue() {
+    for (int i = 0 ; i < size ; i++) {
+        delete [] queue[i];
+    }
     size = 0;
-    delete [] queue;
     head = tail = 0;
 }

@@ -7,11 +7,11 @@ private:
     int tail;
     int head;
     int size;
-    char *queue;
+    char **queue;
 public:
     Queue(int);
-    void enqueue(char);
-    char dequeue();
+    void enqueue(char*);
+    char* dequeue();
     bool isEmpty();
     void show();
     ~Queue();

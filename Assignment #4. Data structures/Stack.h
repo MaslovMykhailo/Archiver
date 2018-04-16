@@ -5,13 +5,13 @@
 class Stack {
 private:
     int size;
-    char *stack;
+    char **stack;
     int top;
 public:
     Stack(int);
     bool isEmpty();
-    void push(char);
-    char pop();
+    void push(char*);
+    char* pop();
     void show();
     ~Stack();
 };
