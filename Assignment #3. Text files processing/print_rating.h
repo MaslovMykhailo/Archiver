@@ -1,0 +1,10 @@
+#ifndef ASSIGNMENT_3_TEXT_FILES_PROCESSING_PRINT_RATING_H
+#define ASSIGNMENT_3_TEXT_FILES_PROCESSING_PRINT_RATING_H
+
+#include <iostream>
+#include "rating.h"
+
+void print_rating(Rating*, int);
+
+
+#endif //ASSIGNMENT_3_TEXT_FILES_PROCESSING_PRINT_RATING_H
