@@ -53,7 +53,7 @@ Queue* shunting_yard(char* expr){
         while(!stack -> isEmpty()){
           char *swap = new char;
           swap[0] = stack -> pop();
-          if (swap[0] == '+' || swap[0] == '-' || swap[0] == '('){
+          if (swap[0] == '('){
             stack -> push(swap[0]);
             break;
           }
@@ -80,8 +80,8 @@ Queue* shunting_yard(char* expr){
   return que;
 }
 
-// int main(int argc, char* argv[]){
-//   char expr[] = "((4 + 3^3 +5)/2)^2";
-//   Queue *q = shunting_yard(expr);
-//   q -> show();
-// }
+int main(int argc, char* argv[]){
+  char expr[] = "4 + (5 - 7)^6";
+  Queue *q = shunting_yard(expr);
+  q -> show();
+}
