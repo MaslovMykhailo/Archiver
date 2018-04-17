@@ -19,7 +19,10 @@ void Stack::push(char* element) {
 }
 
 char* Stack::pop() {
-    return stack[top--];
+    char* res = new char;
+    res = stack[top--];
+    stack[top + 1] = NULL;
+    return res;
 }
 
 void Stack::show() {

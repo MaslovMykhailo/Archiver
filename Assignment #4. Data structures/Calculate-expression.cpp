@@ -1,5 +1,6 @@
 #include <cmath>
 #include <sstream>
+#include <cstdlib>
 #include <cstring>
 #include "Calculate-expression.h"
 
