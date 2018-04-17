@@ -11,7 +11,7 @@ Queue* shunting_yard(char* expr) {
 
 
   Stack *stack = new Stack(strlen(str));
-  Queue *que = new Queue(strlen(str));
+  Queue *queue = new Queue(strlen(str));
   char *num = new char;
   char *swap = new char;
   int k = 0; int i = 0;
@@ -29,7 +29,7 @@ Queue* shunting_yard(char* expr) {
       if (is_number) {
         char *res = new char;
         strcpy(res, num);
-        que -> enqueue(res);
+        queue -> enqueue(res);
         delete num;
         num = new char;
         k = 0; is_number = false;
@@ -41,7 +41,7 @@ Queue* shunting_yard(char* expr) {
         while (!stack -> isEmpty()){
           swap = stack -> pop();
           if (swap[0] == '(') break;
-          que -> enqueue(swap);
+          queue -> enqueue(swap);
         }
       }
 
@@ -52,7 +52,7 @@ Queue* shunting_yard(char* expr) {
             stack -> push(swap);
             break;
           }
-          que -> enqueue(swap);
+          queue -> enqueue(swap);
         }
         stack -> push(new char (str[i]));
       }
@@ -64,27 +64,23 @@ Queue* shunting_yard(char* expr) {
             stack -> push(swap);
             break;
           }
-          que -> enqueue(swap);
+          queue -> enqueue(swap);
         }
         stack -> push(new char(str[i]));
       }
 
       else if (str[i] == '^') stack -> push(new char(str[i]));
-
     }
     i++;
   }
 
-  if (is_number) que -> enqueue(num);
+  if (is_number) queue -> enqueue(num);
 
-  while (!stack -> isEmpty()) que -> enqueue(stack -> pop());
+  while (!stack -> isEmpty()) queue -> enqueue(stack -> pop());
 
-  num = NULL;
-  swap = NULL;
-  delete str;
-  delete num;
-  delete swap;
+  num = swap = nullptr;
+  delete str; delete num; delete swap;
   delete stack;
 
-  return que;
+  return queue;
 }

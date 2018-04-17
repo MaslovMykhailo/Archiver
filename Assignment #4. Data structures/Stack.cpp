@@ -19,9 +19,8 @@ void Stack::push(char* element) {
 }
 
 char* Stack::pop() {
-    char* res = new char;
-    res = stack[top--];
-    stack[top + 1] = NULL;
+    char* res = stack[top];
+    stack[top--] = nullptr;
     return res;
 }
 
