@@ -2,11 +2,9 @@
 #include <iostream>
 
 Queue::Queue(int length) {
-    size = length;
+    size = length+1;
     queue = new char * [size];
-    for (int i = 0 ; i < size ; i++) {
-        queue[i] = new char;
-    }
+    for (int i = 0 ; i < size ; i++) queue[i] = new char;
     head = tail = 0;
 }
 
@@ -47,9 +45,11 @@ void Queue::show() {
 }
 
 Queue::~Queue() {
-    for (int i = 0 ; i < size ; i++) {
-        delete [] queue[i];
-    }
+    for (int i = 0 ; i < size ; i++) delete [] queue[i];
     size = 0;
     head = tail = 0;
+}
+
+int Queue::getSize() {
+    return size-1;
 }

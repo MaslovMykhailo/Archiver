@@ -13,6 +13,7 @@ public:
     void enqueue(char*);
     char* dequeue();
     bool isEmpty();
+    int getSize();
     void show();
     ~Queue();
 };

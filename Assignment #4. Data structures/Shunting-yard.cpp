@@ -1,12 +1,8 @@
-#include <iostream>
-#include <cstring>
-#include <cstdlib>
-#include "Stack.h"
-#include "Queue.h"
+#include "Shunting-yard.h"
 
 using namespace std;
 
-Queue* shunting_yard(char* expr){
+Queue* shunting_yard(char* expr) {
   char *str = new char;
   int j = 0;
   for (int i = 0; i < strlen(expr); i++){
@@ -16,7 +12,7 @@ Queue* shunting_yard(char* expr){
     }
   }
   Stack *stack = new Stack(strlen(str));
-  Queue *que = new Queue(strlen(str) + 1);
+  Queue *que = new Queue(strlen(str));
   char *num = new char;
   int k = 0;
   int i = 0;
@@ -38,12 +34,11 @@ Queue* shunting_yard(char* expr){
         k = 0; is = false;
       }
 
-      if (str[i] == '(') stack -> push('(');
+      if (str[i] == '(') stack -> push(new char('('));
 
       if (str[i] == ')'){
         while (!stack -> isEmpty()){
-          char *swap = new char;
-          swap[0] = stack -> pop();
+          char *swap = stack -> pop();
           if (swap[0] == '(') break;
           que -> enqueue(swap);
         }
@@ -51,35 +46,33 @@ Queue* shunting_yard(char* expr){
 
       else if (str[i] == '-' || str[i] == '+'){
         while(!stack -> isEmpty()){
-          char *swap = new char;
-          swap[0] = stack -> pop();
+          char *swap = stack -> pop();
           if (swap[0] == '('){
-            stack -> push(swap[0]);
+            stack -> push(swap);
             break;
           }
           que -> enqueue(swap);
         }
-        stack -> push(str[i]);
+        stack -> push(new char (str[i]));
       }
 
       else if (str[i] == '*' || str[i] == '/'){
         while(!stack -> isEmpty()){
-          char *swap = new char;
-          swap[0] = stack -> pop();
+          char *swap = stack -> pop();
           if (swap[0] == '-' || swap[0] == '+'){
-            stack -> push(swap[0]);
+            stack -> push(swap);
             break;
           }
           if (swap[0] == '('){
-            stack -> push(swap[0]);
+            stack -> push(swap);
             break;
           }
           que -> enqueue(swap);
         }
-        stack -> push(str[i]);
+        stack -> push(new char(str[i]));
       }
 
-      else if (str[i] == '^') stack -> push(str[i]);
+      else if (str[i] == '^') stack -> push(new char(str[i]));
 
     }
     i++;
@@ -90,15 +83,8 @@ Queue* shunting_yard(char* expr){
     que -> enqueue(res);
   }
   while (!stack -> isEmpty()){
-    char *swap = new char;
-    swap[0] = stack -> pop();
+    char *swap = stack -> pop();
     que -> enqueue(swap);
   }
   return que;
-}
-
-int main(int argc, char* argv[]){
-  char expr[] = "((2 - 4) * 5)^2";
-  Queue *q = shunting_yard(expr);
-  q -> show();
 }
