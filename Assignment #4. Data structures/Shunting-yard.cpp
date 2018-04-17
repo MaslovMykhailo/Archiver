@@ -49,10 +49,27 @@ Queue* shunting_yard(char* expr){
         }
       }
 
-      else if (str[i] == '-' || str[i] == '+' || str[i] == '*' || str[i] == '/'){
+      else if (str[i] == '-' || str[i] == '+'){
         while(!stack -> isEmpty()){
           char *swap = new char;
           swap[0] = stack -> pop();
+          if (swap[0] == '('){
+            stack -> push(swap[0]);
+            break;
+          }
+          que -> enqueue(swap);
+        }
+        stack -> push(str[i]);
+      }
+
+      else if (str[i] == '*' || str[i] == '/'){
+        while(!stack -> isEmpty()){
+          char *swap = new char;
+          swap[0] = stack -> pop();
+          if (swap[0] == '-' || swap[0] == '+'){
+            stack -> push(swap[0]);
+            break;
+          }
           if (swap[0] == '('){
             stack -> push(swap[0]);
             break;
@@ -81,7 +98,7 @@ Queue* shunting_yard(char* expr){
 }
 
 int main(int argc, char* argv[]){
-  char expr[] = "4 + (5 - 7)^6";
+  char expr[] = "((2 - 4) * 5)^2";
   Queue *q = shunting_yard(expr);
   q -> show();
 }
