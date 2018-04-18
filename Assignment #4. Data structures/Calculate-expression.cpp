@@ -2,6 +2,7 @@
 #include <sstream>
 #include <cstdlib>
 #include <cstring>
+#include <iostream>
 #include "Calculate-expression.h"
 
 char* calculate_expr(Queue* queue) {
@@ -23,7 +24,20 @@ char* calculate_expr(Queue* queue) {
     }
 
     char* result = new char;
-    strcpy(result, stack->pop());
+    char* pop = stack->pop();
+    if (pop) {
+        strcpy(result, stack->pop());
+    } else {
+        result = "Error";
+    }
+    try {
+        if (!stack->isEmpty()) {
+            throw 100;
+        }
+    } catch(int n) {
+        std::cout << "Exception №" << n << ": Invalid operator" << std::endl;
+        result = "Error";
+    }
     delete stack;
 
     return result;
@@ -31,6 +45,12 @@ char* calculate_expr(Queue* queue) {
 
 char* implement_operator(char symbol, char* n1, char* n2) {
     char* ptr;
+    if ( !n1 || !n2 ||
+         (int(n1[0]) < 48 || int(n1[0]) > 57) ||
+         (int(n2[0]) < 48 || int(n2[0]) > 57))
+    {
+        return new char (symbol);
+    }
     double first = strtod(n1, &ptr);
     double second = strtod(n2, &ptr);
     std::stringstream str;

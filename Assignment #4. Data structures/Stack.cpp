@@ -19,7 +19,7 @@ void Stack::push(char* element) {
 }
 
 char* Stack::pop() {
-    char* res = stack[top];
+    char* res = top > -1 ? stack[top] : nullptr;
     stack[top--] = nullptr;
     return res;
 }
