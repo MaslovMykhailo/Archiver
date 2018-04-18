@@ -9,7 +9,9 @@ using namespace std;
 
 int main(int argc, char** argv) {
     if (argc > 1) {
-        cout << "Result: " << calculate_expr(shunting_yard(get_expr(argv))) << endl;
+        char* expr = get_expr(argv);
+        if (strcmp(expr, "err") == 0) cout << "Braces validation error" << endl;
+        else cout << "Result: " << calculate_expr(shunting_yard(expr)) << endl;
     } else {
         cout << "Invalid expression!" << endl;
     }
