@@ -1,34 +1,44 @@
+#include <iostream>
 #include "lz_algorithm.h"
 
 using namespace std;
 
-string buffer;
-map<std::string,int> dictionary;
-vector<string> vectorDict(1, "");
+//string buffer;
+//map<std::string,int> dictionary;
+//vector<string> vectorDict(1, "");
 
-string lz_algorithm_encode(string hexStr) {
-    string code;
+list<Node*> lz_algorithm_encode(string str) {
+    map<string,int> dictionary;
+    string buffer;
+    list<Node*> answer;
 
-    for (int i = 0 ; i < hexStr.size() ; i++) {
-        string cur = to_string(hexStr[i]);
-        auto search = dictionary.find(cur);
+    for (int i = 0 ; i < str.size() ; i++) {
+        string cur; cur.push_back(str[i]);
+        auto search = dictionary.find(buffer + cur);
 
         if (search != dictionary.end()) {
             buffer += cur;
         } else {
-            code += (to_string(dictionary[buffer]) + cur);
-            dictionary[buffer + cur] = (int)dictionary.size() + 1;
-            buffer = "";
+            answer.push_back(new Node(dictionary[buffer], str[i]));
+            dictionary[buffer + cur] = (int)dictionary.size() - 1;
+            buffer.clear();
         }
     }
 
-    return code;
+    return answer;
 }
 
-string lz_algorithm_decode(string codeStr) {
-    string result;
-
-    for (int i = 0 ; i < codeStr.size() ; i++) {
-        string word = vectorDict[]
-    }
-}
+//string lz_algorithm_decode(string codeStr) {
+//    string result;
+//
+//    string str; str.push_back(codeStr[0]);
+//    int i = stoi(str, nullptr, 10);
+//
+//
+//    string word = vectorDict[i] + codeStr[1];
+//    result += word;
+//    vectorDict.push_back(word);
+//
+//
+//    return result;
+//}

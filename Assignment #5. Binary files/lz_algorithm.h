@@ -4,11 +4,21 @@
 
 #include <string>
 #include <map>
-#include <vector>
+#include <list>
 
-std::string lz_algorithm_encode(std::string);
+struct Node {
+    int pos;
+    char next;
 
-std::string lz_algorithm_decode(std::string);
+    Node(int p, char n) {
+        pos = p;
+        next = n;
+    }
+};
+
+std::list<Node*> lz_algorithm_encode(std::string);
+
+//std::string lz_algorithm_decode(std::string);
 
 
 #endif //ASSIGNMENT_5_BINARY_FILES_LZ_ALGORITHM_H
