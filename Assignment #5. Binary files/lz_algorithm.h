@@ -16,7 +16,10 @@ struct Node {
     }
 };
 
-std::list<Node*> lz_algorithm_encode(std::string);
+//std::string buffer;
+//std::map<std::string,int> dictionary;
+
+void lz_algorithm_encode(char, std::list<Node*>*);
 
 //std::string lz_algorithm_decode(std::string);
 
