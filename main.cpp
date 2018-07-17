@@ -1,7 +1,7 @@
 #include <iostream>
 #include "cstring"
-#include "compress.h"
-#include "decompress.h"
+#include "src/compress.h"
+#include "src/decompress.h"
 
 using namespace std;
 
